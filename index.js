@@ -55,17 +55,20 @@ client.on("messageCreate", async message => {
             case "prediction":
                 var tier = ['Fer', 'Bronze', 'Argent', 'Or', 'Platine', 'Diamant', 'Master', 'Challenger'];
                 var palier = ['IV', 'III', 'II', 'I'];
+                var phrase = ['C\'est définitivement l\elo que tu mérites.','Si tu y arrives, je mange mon chapeau.','Même mon Colin peut y arriver, alors pourquoi pas toi ?','Bon, je serais toi je demanderai à quelqu\'un de te PL.','J\'ai une confiance absolue en toi.']
                 var tabTier = Math.floor(Math.random()*tier.length);
                 var tabPalier = Math.floor(Math.random()*palier.length);
+                var tabPhrase = Math.floor(Math.random()*phrase.length);
                 var tierValue = tier[tabTier];
                 var palierValue = palier[tabPalier];
+                var petitePhrase = phrase[tabPhrase]; 
                 
                 if(tierValue === "Master" || tierValue === "Challenger"){
                     var points = Math.floor(Math.random() * (0 + 2000)) + 0;
-                    message.channel.send("<@" + message.author.id + ">  Cette saison, je prédis que tu seras capable d'atteintre le **" + tierValue + " " + points + " " + "LP" + "**, bon courage... !");  
+                    message.channel.send("<@" + message.author.id + ">  Cette saison, je prédis que tu seras capable d'atteintre le **" + tierValue + " " + points + " " + "LP" + "**." + " " + petitePhrase);  
                     message.delete();
                 }else{
-                    message.channel.send("<@" + message.author.id + ">  Cette saison, je prédis que tu seras capable d'atteintre le **" + tierValue + " " + palierValue + "**, bonne chance !");
+                    message.channel.send("<@" + message.author.id + ">  Cette saison, je prédis que tu seras capable d'atteintre le **" + tierValue + " " + palierValue + "**." + " " +petitePhrase);
                     message.delete();
                 }
                 break;
