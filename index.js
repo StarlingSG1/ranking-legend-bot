@@ -37,7 +37,6 @@ client.on("messageCreate", async message => {
         const command = input.shift();
 
         
-
 const topTab = ["Aatrox","Akali","Camille","Cho'Gath","Darius","Dr.Mundo","Fiora","Gangplank","Garen","Gnar","Graves","Gwen","Heimerdinger","Illaoi","Irelia","Jax","Jayce","Kayle","Kennen","Kled","Malphite","Mordekaiser","Nasus","Ornn","Quinn","Renekton","Riven","Rumble","Sett","Shen","Singed","Sion","Sylas","Tahm Kench","Teemo","Tryndamere","Urgot","Vayne","Viktor","Volibear","Wukong","Yasuo","Yorick"];
 const jungleTab = ["Amumu","Diana","Ekko","Elise","Evelynn","Fiddlesticks","Gragas","Graves","Hecarim","Ivern","Jarvan IV","Khartus","Kayn","Kha'zix","Kindred","Lee Sin","Master Yi","Nidalee","Nocture","Rengar","Sejuani","Shaco","Shyvana","Skarner","Taliyah","Talon","Trundle","Udyr","Vi","Viego","Volibear","Warwick","Xin Zhao","Zac","Zed"];
 const midTab = ["Ahri","Akali","Anivia","Annie","Aurelion Sol","Azir","Cassiopeia","Corki","Ekko","Fizz","Galio","Heimerdinger","Irelia","Jayce","Kassadin","Katarina","LeBlanc","Lissandra","Lux","Malzahar","Orianna","Qiyana","Ryze","Sylas","Syndra","Talon","Twisted Fate","Veigar","Victor","Vladimir","Xerath","Yasuo","Zed","Zoe"];
@@ -55,17 +54,24 @@ const suppTab = ["Alistar","Bard","Blitzcrank","Brand","Braum","Galio","Janna","
 
         switch (command) {
             case "team":
-                // ON RECUPERE L'ID DU SALON VOCAL DE LA PERSONNE QUI A TAPER LE MESSAGE LETS GOO
-                                console.log(message.member.voice.channel.members.size);
+                const roles = ["top", "jungle", "mid", "adc", "support"];
+                const memberTab = [];
                 let channel = message.member.voice.channel;
-                let memberTab = [];
+                let channelSize = channel.members.size;
+                
                 for (let member of channel.members) {
                     memberTab.push(member[1].user.username);
-                    
                 }
-                console.log(memberTab);                
                 
+                for(let i = 0; i < channelSize; i++){
+                var leRole = Math.floor(Math.random() * roles.length);
+                var roleValue = roles[leRole];
+                message.channel.send("Le joueur " + memberTab[i] + " est " + roleValue);
+                
+                var indexRoles = roles.indexOf(roleValue);
 
+                roles.splice(indexRoles, 1);
+                }
                 break;
             case "top":
                 var tab = Math.floor(Math.random() * topTab.length);
@@ -190,7 +196,6 @@ function compte() {
     const guild = client.guilds.cache.get("930576734426906696");
     let salonMembres = client.channels.cache.get("930590253364936714");
     salonMembres.setName(guild.memberCount + "-" + "modo");
-    console.log(salonMembres.name);
 }
 
 client.on('messageCreate', (message) => {
