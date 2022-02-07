@@ -2,13 +2,19 @@ const { Client } = require('discord.js');
 const { PREFIX, TOKEN, BOT_TOKEN } = require('./config');
 const fetch = require("node-fetch");
 var fs = require('fs');
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const deployCommand = require("./deploy-commands");
 
+deployCommand.execute;
 
 var files = fs.readdirSync('./assets/champions/');
 
 const client = new Client({
     intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS", "GUILD_MEMBERS", "GUILD_VOICE_STATES"]
 });
+
+const commandLol = new SlashCommandBuilder().setName('lol').setDescription('Donnes tes ranks sur LoL');
+
 
 // Event quand le bot se connecté
 
@@ -37,22 +43,14 @@ client.on("messageCreate", async message => {
         const command = input.shift();
 
         
-const topTab = ["Aatrox","Akali","Camille","Cho'Gath","Darius","Dr.Mundo","Fiora","Gangplank","Garen","Gnar","Graves","Gwen","Heimerdinger","Illaoi","Irelia","Jax","Jayce","Kayle","Kennen","Kled","Malphite","Mordekaiser","Nasus","Ornn","Quinn","Renekton","Riven","Rumble","Sett","Shen","Singed","Sion","Sylas","Tahm Kench","Teemo","Tryndamere","Urgot","Vayne","Viktor","Volibear","Wukong","Yasuo","Yorick"];
-const jungleTab = ["Amumu","Diana","Ekko","Elise","Evelynn","Fiddlesticks","Gragas","Graves","Hecarim","Ivern","Jarvan IV","Khartus","Kayn","Kha'zix","Kindred","Lee Sin","Master Yi","Nidalee","Nocture","Rengar","Sejuani","Shaco","Shyvana","Skarner","Taliyah","Talon","Trundle","Udyr","Vi","Viego","Volibear","Warwick","Xin Zhao","Zac","Zed"];
-const midTab = ["Ahri","Akali","Anivia","Annie","Aurelion Sol","Azir","Cassiopeia","Corki","Ekko","Fizz","Galio","Heimerdinger","Irelia","Jayce","Kassadin","Katarina","LeBlanc","Lissandra","Lux","Malzahar","Orianna","Qiyana","Ryze","Sylas","Syndra","Talon","Twisted Fate","Veigar","Victor","Vladimir","Xerath","Yasuo","Zed","Zoe"];
-const adcTab = ["Aphelios","Ashe","Caitlyn","Draven","Ezreal","Jhin","Jinx","Kai'sa","Kalista","Kog'maw","Lucian","Miss Forturne","Samira","Sivir","Tristana","Twitch","Varus","Vayne","Xayah","Yasuo","Ziggs"];
-const suppTab = ["Alistar","Bard","Blitzcrank","Brand","Braum","Galio","Janna","Karma","Leona","Lulu","Lux","Maokai","Morgana","Nami","Nautilus","Pantheon","Pyke","Rakan","Sona","Soraka","Swain", "Taric", "Thresh", "Vel'Koz", "Xerath", "Zilean", "Zyra"];
-
-// Fonction qui mets danns un tableau le nom des fichiers du dossier champions
-        
-// fonction qui retourne le nom des personnes presente un salon vocal
-
-
 
 
 
 
         switch (command) {
+
+
+
             case "team":
                 const roles = ["top", "jungle", "mid", "adc", "support"];
                 const memberTab = [];
@@ -73,40 +71,7 @@ const suppTab = ["Alistar","Bard","Blitzcrank","Brand","Braum","Galio","Janna","
                 roles.splice(indexRoles, 1);
                 }
                 break;
-            case "top":
-                var tab = Math.floor(Math.random() * topTab.length);
-                var topValue = topTab[tab];
-                message.channel.send("<@" + message.author.id + "> Top >> **" +topValue+ "**");
-                message.delete();
-                break;
 
-            case "jungle":
-                var tab = Math.floor(Math.random() * jungleTab.length);
-                var jungleValue = jungleTab[tab];
-                message.channel.send("<@" + message.author.id + "> Jungle >> **" +jungleValue+ "**");
-                message.delete();
-                break;
-
-            case "mid":
-                var tab = Math.floor(Math.random() * midTab.length);
-                var midValue = midTab[tab];
-                message.channel.send("<@" + message.author.id + "> Mid >> **" +midValue+ "**");
-                message.delete();
-                break;
-
-            case "adc":
-                var tab = Math.floor(Math.random() * adcTab.length);
-                var adcValue = adcTab[tab];
-                message.channel.send("<@" + message.author.id + "> Adc >> **" +adcValue+ "**");
-                message.delete();
-                break;
-
-            case "support":
-                var tab = Math.floor(Math.random() * suppTab.length);
-                var supportValue = suppTab[tab];
-                message.channel.send("<@" + message.author.id + "> Support >> **" + supportValue + "**");
-                message.delete();
-                break;
 
             case "aide":
                 message.channel.send("Voici la liste des commandes disponibles :\n**aide**\nAffiche l'aide du bot");
@@ -141,36 +106,7 @@ const suppTab = ["Alistar","Bard","Blitzcrank","Brand","Braum","Galio","Janna","
                 }
                 break;
 
-            case "lol":
-                // On concatène les mots du tableau en 1 string
-                const joindedInput = input.join(" ");
-                //  On retire les espaces 
-                const colledInput = joindedInput.replace(/\s+/g, '')
-                //  On mets le mot en minuscule
-                const cleanSummonerName = colledInput.toLowerCase();
 
-                let url = `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${cleanSummonerName}?api_key=${TOKEN}`;
-                let response = await fetch(url);
-                let data = await response.json();
-                let id = data.id;
-                let getRank = `https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${TOKEN}`;
-                let responseRank = await fetch(getRank);
-                let dataRank = await responseRank.json();
-
-                if (dataRank.length === 0) {
-                    message.channel.send(`${data.name} n'est classé pas du tout classé`);
-                } else {
-
-                    for (let i = 0; i < dataRank.length; i++) {
-                        if (dataRank[i].queueType === "RANKED_TFT_PAIRS") {
-                            message.channel.send(`${dataRank[i].summonerName} joue à TFT : **${dataRank[i].wins} TOP 1**`);
-
-                        } else {
-                            message.channel.send(`${dataRank[i].summonerName} est classé **${dataRank[i].tier} ${dataRank[i].rank} ${dataRank[i].leaguePoints}** LP en ${dataRank[i].queueType === "RANKED_SOLO_5x5" ? "SoloQ" : "Flex"}`);
-                        }
-                    }
-                }
-                break;
 
 
 
@@ -183,14 +119,13 @@ const suppTab = ["Alistar","Bard","Blitzcrank","Brand","Braum","Galio","Janna","
 
 });
 
-client.on("messageReactionAdd", async (reaction, user) => {
-    if (reaction.emoji.name === "😄") {
-        let channel = reaction.message.guild.channels.cache.get("930590253364936714");
-        channel.send(" <@" + user.id + ">  aime le message. voici son lien " + reaction.message.url);
-    }
-});
+// client.on("messageReactionAdd", async (reaction, user) => {
+//     if (reaction.emoji.name === "😄") {
+//         let channel = reaction.message.guild.channels.cache.get("930590253364936714");
+//         channel.send(" <@" + user.id + ">  aime le message. voici son lien " + reaction.message.url);
+//     }
+// });
 
-client.login(BOT_TOKEN);
 
 function compte() {
     const guild = client.guilds.cache.get("930576734426906696");
@@ -198,15 +133,34 @@ function compte() {
     salonMembres.setName(guild.memberCount + "-" + "modo");
 }
 
-client.on('messageCreate', (message) => {
-    if (message.content == '/muteAll') {
-        let channel = message.member.voice.channel;
-        let tab = [];
-        for (let member of channel.members) {
-            tab.push(member[1].user.username);
+// client.on('messageCreate', (message) => {
+//     if (message.content == '/muteAll') {
+//         let channel = message.member.voice.channel;
+//         let tab = [];
+//         for (let member of channel.members) {
+//             tab.push(member[1].user.username);
             
-        }
-        console.log(tab);
-     }
-});
+//         }
+//         console.log(tab);
+//     }
+// });
 
+
+client.on("interactionCreate", async (interaction) => {
+    if(!interaction.isCommand()) return;
+    if(interaction.commandName === "champion-random") {
+        const cmd = require("./commands/champion-random.js");
+        await cmd.execute(interaction);
+    } else if (interaction.commandName === "rank"){
+        const cmd = require("./commands/rank.js");
+        await cmd.execute(interaction);
+    } else if (interaction.commandName === "mmr"){
+        const cmd = require("./commands/mmr.js");
+        await cmd.execute(interaction);
+    } else if (interaction.commandName === "among-legends"){
+        const cmd = require("./commands/among-legends.js");
+        await cmd.execute(interaction, client);
+    }
+})
+
+client.login(BOT_TOKEN);
