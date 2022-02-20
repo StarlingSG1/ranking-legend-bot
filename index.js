@@ -8,7 +8,7 @@ const deployCommand = require("./deploy-commands");
 
 deployCommand.execute;
 
-var files = fs.readdirSync('./assets/champions/');
+
 
 const client = new Client({
     intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS", "GUILD_MEMBERS", "GUILD_VOICE_STATES", Intents.FLAGS.GUILD_MESSAGE_REACTIONS]
