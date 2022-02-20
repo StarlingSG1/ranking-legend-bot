@@ -36,9 +36,9 @@ client.on("messageCreate", async message => {
     // if(message.member.id != client.user.id){
     //     message.reply("Salut fils de pute");
     // }
-    if (message.content.startsWith(PREFIX)) {
+    if (message.content.startsWith(process.env.PREFIX)) {
         // On récupère le préfixe pour identifié la commande
-        const input = message.content.slice(PREFIX.length).trim().split(" ");
+        const input = message.content.slice(process.env.PREFIX.length).trim().split(" ");
         // On mets dans un tableau les mots suivants
         const command = input.shift();
 

@@ -1,5 +1,4 @@
 
-const { BOT_TOKEN } = require('./config.js');
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 const { clientId, guildId } = require("./config.json");
@@ -15,7 +14,7 @@ for (const file of commandFiles) {
   commands.push(command.data.toJSON());
 }
 
-const rest = new REST({ version: "9" }).setToken(BOT_TOKEN);
+const rest = new REST({ version: "9" }).setToken(process.env.BOT_TOKEN);
 
 exports.execute = (async () => {
   try {
