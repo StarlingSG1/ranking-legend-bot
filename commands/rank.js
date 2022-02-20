@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { TOKEN } = require('../config.js');
+// const { TOKEN } = require('../config.js');
 const fetch = require("node-fetch");
 
 

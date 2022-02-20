@@ -1,4 +1,5 @@
 const { Client, Intents } = require('discord.js');
+require('dotenv').config();
 const { PREFIX, TOKEN, BOT_TOKEN } = require('./config');
 const fetch = require("node-fetch");
 var fs = require('fs');
