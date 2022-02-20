@@ -26,11 +26,11 @@ module.exports = {
     async execute(interaction) {
       const pseudo = interaction.options.get("summoner").value;
       const cleanPseudo = (pseudo.replace(/\s/g, "").toLowerCase());
-      let url = `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${cleanPseudo}?api_key=${TOKEN}`;
+      let url = `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${cleanPseudo}?api_key=${process.env.TOKEN}`;
       let response = await fetch(url);
       let data = await response.json();
       let id = data.id;
-                       let getRank = `https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${TOKEN}`;
+                       let getRank = `https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${process.env.TOKEN}`;
                   let responseRank = await fetch(getRank);
                   let dataRank = await responseRank.json();
       

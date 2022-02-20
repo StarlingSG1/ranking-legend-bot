@@ -210,4 +210,4 @@ client.on("messageReactionAdd", async (reaction,user) => {
     }
 });
 
-client.login(process.env.TOKEN);
+client.login(process.env.BOT_TOKEN);
