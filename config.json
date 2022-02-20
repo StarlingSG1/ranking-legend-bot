@@ -2,6 +2,7 @@
 
     "clientId": "930575795892662312",
     "guildId": "930576734426906696",
+    "roles": ["top", "mid", "jungle", "adc", "support"],
     "top": [
         "Aatrox",
         "Akali",
