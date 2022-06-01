@@ -203,9 +203,9 @@ client.on("interactionCreate", async (interaction) => {
   } else if (interaction.commandName === "rank") {
     const cmd = require("./commands/rank.js");
     await cmd.execute(interaction);
-//   } else if (interaction.commandName === "mmr") {
-//     const cmd = require("./tests/mmr.js");
-//     await cmd.execute(interaction);
+  } else if (interaction.commandName === "mmr") {
+    const cmd = require("./commands/mmr.js");
+    await cmd.execute(interaction);
   } else if (interaction.commandName === "random-role-champion") {
     const cmd = require("./commands/random-role-champion.js");
     await cmd.execute(interaction);
@@ -213,10 +213,10 @@ client.on("interactionCreate", async (interaction) => {
     const cmd = require("./commands/team-builder.js");
     await cmd.execute(interaction);
   }
-   else if (interaction.commandName === "test"){
-      const cmd = require("./commands/test.js");
-      await cmd.execute(interaction);
-  }
+  //  else if (interaction.commandName === "test"){
+  //     const cmd = require("./commands/test.js");
+  //     await cmd.execute(interaction);
+  // }
 });
 
 // client.on("messageReactionAdd", async (reaction,user) => {
