@@ -168,47 +168,47 @@ client.on("interactionCreate", async (interaction) => {
         const cmd = require("./commands/mmr.js");
         await cmd.execute(interaction);
     } else if (interaction.commandName === "among-legends"){
-        const cmd = require("./commands/among-legends.js");
+        const cmd = require("./commands/team-builder.js");
         await cmd.execute(interaction);
-    } else if (interaction.commandName === "test"){
-        const cmd = require("./commands/test.js");
-        await cmd.execute(interaction);
-    }
+    // } else if (interaction.commandName === "test"){
+    //     const cmd = require("./commands/test.js");
+    //     await cmd.execute(interaction);
+    // }
 });
 
-client.on("messageReactionAdd", async (reaction,user) => {
-    if (
-        reaction.message.channel.id === "930576735102197882" &&
-        reaction.message.author.id !== user.id
-      ){
-        if (
-            reaction.message.content.includes(
-              "Lancement de la partie d'Among Legends"
-            )
-          ) { 
-            const channel = client.channels.cache.get("930576735102197882");
+// client.on("messageReactionAdd", async (reaction,user) => {
+//     if (
+//         reaction.message.channel.id === "930576735102197882" &&
+//         reaction.message.author.id !== user.id
+//       ){
+//         if (
+//             reaction.message.content.includes(
+//               "Lancement de la partie d'Among Legends"
+//             )
+//           ) { 
+//             const channel = client.channels.cache.get("930576735102197882");
             
-            var user1 = ["test"];
-            if(reaction.emoji.name === "1️⃣"  ){
-                 user1.push("user1");
-            } else if (reaction.emoji.name === "2️⃣"){
-                const user2 = "user2"
-            } else if (reaction.emoji.name === "3️⃣"){
-                const user3 = "user3"
-            } else if (reaction.emoji.name === "4️⃣"){
-                const user4 = "user4"
+//             var user1 = ["test"];
+//             if(reaction.emoji.name === "1️⃣"  ){
+//                  user1.push("user1");
+//             } else if (reaction.emoji.name === "2️⃣"){
+//                 const user2 = "user2"
+//             } else if (reaction.emoji.name === "3️⃣"){
+//                 const user3 = "user3"
+//             } else if (reaction.emoji.name === "4️⃣"){
+//                 const user4 = "user4"
                
-            } else if (reaction.emoji.name === "5️⃣"){
-                const user5 = "user5"
+//             } else if (reaction.emoji.name === "5️⃣"){
+//                 const user5 = "user5"
                 
-            } 
+//             } 
             
-            if (reaction.emoji.name === "✅") {
-                console.log(user1)
-                await channel.send(`Vous avez bien validé` + user1);
-            }
-      }
-    }
-});
+//             if (reaction.emoji.name === "✅") {
+//                 console.log(user1)
+//                 await channel.send(`Vous avez bien validé` + user1);
+//             }
+//       }
+//     }
+// });
 
 client.login(process.env.BOT_TOKEN);
