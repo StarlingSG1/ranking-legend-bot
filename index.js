@@ -213,10 +213,10 @@ client.on("interactionCreate", async (interaction) => {
     const cmd = require("./commands/team-builder.js");
     await cmd.execute(interaction);
   }
-  //  else if (interaction.commandName === "test"){
-  //     const cmd = require("./commands/test.js");
-  //     await cmd.execute(interaction);
-  // }
+   else if (interaction.commandName === "test"){
+      const cmd = require("./commands/test.js");
+      await cmd.execute(interaction);
+  }
 });
 
 // client.on("messageReactionAdd", async (reaction,user) => {
