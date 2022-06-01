@@ -28,7 +28,6 @@ module.exports = {
     let mmrUrl = `https://euw.whatismymmr.com/api/v1/summoner?name=${cleanPseudo}`;
     let mmrResponse = await fetch(mmrUrl);
     let mmrData = await mmrResponse.json();
-    console.log(mmrData);
     let normalMmr = "";
     let rankedMmr = "";
     let aramMmr = "";
@@ -64,7 +63,6 @@ module.exports = {
     } else {
       aramMmr = "Pas assez d'information pour obtenir le MMR en **ARAM**."
     }
-    console.log(rankedMmr);
     await interaction.reply(`${normalMmr}\n${rankedMmr}\n${aramMmr}`);
   }
     

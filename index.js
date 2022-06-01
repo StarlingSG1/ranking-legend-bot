@@ -85,7 +85,6 @@ client.on("messageCreate", async (message) => {
 
         for (let member of channel1.members) {
           testTab.push(member[1].user.username);
-          console.log(member[1].user);
           member[1].user.send("test");
         }
         message.channel.send(

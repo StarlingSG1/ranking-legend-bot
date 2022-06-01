@@ -32,7 +32,6 @@ module.exports = {
     let getRank = `https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${process.env.TOKEN}`;
     let responseRank = await fetch(getRank);
     let dataRank = await responseRank.json();
-    console.log(dataRank);
     let responseTft = "Le joueur n'est pas classé en TFT";
     let soloQ = "Le joueur n'est pas classé en SoloQ";
     let flexQ = "Le joueur n'est pas classé en Flex";

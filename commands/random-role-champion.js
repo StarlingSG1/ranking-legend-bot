@@ -25,7 +25,6 @@ module.exports = {
     const lesRoles = [];
     for (let member of salon) {
       salonTab.push(member[1].user.username);
-      console.log(member[1].user);
     }
     for (let i = 0; i < salonTab.length; i++) {
       const leRole = Math.floor(Math.random() * allRoles.length);
