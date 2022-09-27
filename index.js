@@ -38,7 +38,7 @@ client.on("ready", () => {
   });
   console.log(`Ready as ${client.user.tag}!`);
 
-  compte();
+  // compte();
 });
 
 client.on("messageCreate", async (message) => {
@@ -177,11 +177,11 @@ client.on("messageCreate", async (message) => {
 //     }
 // });
 
-function compte() {
-  const guild = client.guilds.cache.get("930576734426906696");
-  let salonMembres = client.channels.cache.get("930590253364936714");
-  salonMembres.setName(guild.memberCount + "-" + "modo");
-}
+// function compte() {
+//   const guild = client.guilds.cache.get("290159984875012097");
+//   let salonMembres = client.channels.cache.get("930590253364936714");
+//   salonMembres.setName(guild.memberCount + "-" + "modo");
+// }
 
 // client.on('messageCreate', (message) => {
 //     if (message.content == '/muteAll') {
