@@ -1,4 +1,4 @@
-const { Client, Intents } = require("discord.js");
+const { Client, GatewayIntentBits } = require("discord.js");
 require("dotenv").config();
 const { PREFIX, TOKEN, BOT_TOKEN } = require("./config");
 const fetch = require("node-fetch");
@@ -8,16 +8,7 @@ const deployCommand = require("./deploy-commands");
 
 deployCommand.execute;
 
-const client = new Client({
-  intents: [
-    "GUILDS",
-    "GUILD_MESSAGES",
-    "GUILD_MESSAGE_REACTIONS",
-    "GUILD_MEMBERS",
-    "GUILD_VOICE_STATES",
-    Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
-  ],
-});
+const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 const commandLol = new SlashCommandBuilder()
   .setName("lol")
