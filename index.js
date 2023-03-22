@@ -8,6 +8,8 @@ const deployCommand = require("./deploy-commands");
 
 deployCommand.execute;
 
+
+
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 const commandLol = new SlashCommandBuilder()
@@ -16,7 +18,7 @@ const commandLol = new SlashCommandBuilder()
 
 // Event quand le bot se connecté
 
-client.on("ready", () => {
+client.on("ready", async () => {
   client.user.setPresence({
     // On lui définie son activité :" Joue à {name}"
     activities: [
@@ -28,7 +30,6 @@ client.on("ready", () => {
     status: "online",
   });
   console.log(`Ready as ${client.user.tag}!`);
-
   // compte();
 });
 
